@@ -1,11 +1,7 @@
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Fragmentation-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/5937)
-[![Build Status](https://travis-ci.org/YoKeyword/Fragmentation.svg?branch=master)](https://travis-ci.org/YoKeyword/Fragmentation)
-[![Download](https://api.bintray.com/packages/yokeyword/maven/Fragmentation/images/download.svg) ](https://bintray.com/yokeyword/maven/Fragmentation/_latestVersion)
+[![](https://jitpack.io/v/v-shahzadahmad/Fragmentation.svg)](https://jitpack.io/#v-shahzadahmad/Fragmentation)
 [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 # PLEASE NOTE, THIS PROJECT IS NO LONGER BEING MAINTAINED
-****
-### [中文版 README.md](https://github.com/YoKeyword/Fragmentation/blob/master/README_CN.md)
 
 # FragmentationX
 
@@ -47,19 +43,27 @@ The first demo shows the basic usage of the library. The second one shows the wa
 ### Note: This is the use of androidx, if you are using the android.support, [click here `branch:master`](https://github.com/YoKeyword/Fragmentation/blob/master/README.md)
 **1、build.gradle**
 ````gradle
+
+// Add it in your root settings.gradle at the end of repositories:
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
 // This is the use of androidx, if you are using the android.support: fragmentationx -> fragmentation
-implementation 'me.yokeyword:fragmentationx:1.0.2'
+
+implementation 'com.github.v-shahzadahmad.Fragmentation:fragmentation:2.0.0'
 
 // If you don't want to extends SupportActivity/Fragment and would like to customize your own support, just rely on fragmentation-core
-// implementation 'me.yokeyword:fragmentationx-core:1.0.2'
+// implementation 'com.github.v-shahzadahmad.Fragmentation:fragmentation_core:2.0.0'
 
 // To get SwipeBack feature, rely on both fragmentation & fragmentation-swipeback
-implementation 'me.yokeyword:fragmentationx:1.0.2'
+implementation 'com.github.v-shahzadahmad.Fragmentation:fragmentation:2.0.0'
 // Swipeback is based on fragmentation. Refer to SwipeBackActivity/Fragment for your Customized SupportActivity/Fragment
-implementation 'me.yokeyword:fragmentationx-swipeback:1.0.2'
+implementation 'com.github.v-shahzadahmad.Fragmentation:fragmentation_swipeback:2.0.0'
 
 // To simplify the communication between Fragments.
-implementation 'me.yokeyword:eventbus-activity-scope:1.1.0'
+implementation 'com.github.v-shahzadahmad.Fragmentation:eventbus_activity_scope:2.0.0'
 // Your EventBus's version
 implementation 'org.greenrobot:eventbus:{version}'
 ````
