@@ -261,7 +261,7 @@ public class SupportActivityDelegate {
      * Pop the child fragment.
      */
     public void pop() {
-        mTransactionDelegate.pop(getSupportFragmentManager());
+        mTransactionDelegate.pop(getSupportFragmentManager(), null);
     }
 
     /**

@@ -505,14 +505,18 @@ public class SupportFragmentDelegate {
     }
 
     public void pop() {
-        mTransactionDelegate.pop(mFragment.getFragmentManager());
+        mTransactionDelegate.pop(mFragment.getFragmentManager(), null);
+    }
+
+    public void pop(Runnable afterPopTransactionRunnable) {
+        mTransactionDelegate.pop(mFragment.getFragmentManager(), afterPopTransactionRunnable);
     }
 
     /**
      * Pop the child fragment.
      */
     public void popChild() {
-        mTransactionDelegate.pop(getChildFragmentManager());
+        mTransactionDelegate.pop(getChildFragmentManager(), null);
     }
 
     /**

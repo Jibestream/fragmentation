@@ -362,6 +362,10 @@ public class SupportFragment extends Fragment implements ISupportFragment {
         mDelegate.pop();
     }
 
+    public void pop(Runnable afterPopTransactionRunnable) {
+        mDelegate.pop(afterPopTransactionRunnable);
+    }
+
     /**
      * Pop the child fragment.
      */

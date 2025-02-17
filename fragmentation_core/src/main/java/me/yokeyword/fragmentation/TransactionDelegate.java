@@ -105,15 +105,18 @@ class TransactionDelegate {
                 for (int i = 0; i < tos.length; i++) {
                     Fragment to = (Fragment) tos[i];
 
-                    Bundle args = getArguments(to);
-                    args.putInt(FRAGMENTATION_ARG_ROOT_STATUS, SupportFragmentDelegate.STATUS_ROOT_ANIM_DISABLE);
-                    bindContainerId(containerId, tos[i]);
+                    // Check if the fragment is already added
+                    if (fm.findFragmentByTag(to.getClass().getName()) == null) {
+                        Bundle args = getArguments(to);
+                        args.putInt(FRAGMENTATION_ARG_ROOT_STATUS, SupportFragmentDelegate.STATUS_ROOT_ANIM_DISABLE);
+                        bindContainerId(containerId, tos[i]);
 
-                    String toName = to.getClass().getName();
-                    ft.add(containerId, to, toName);
+                        String toName = to.getClass().getName();
+                        ft.add(containerId, to, toName); // Add fragment with a tag
+                    }
 
                     if (i != showPosition) {
-                        ft.hide(to);
+                        ft.hide(to); // Hide fragment if not in showPosition
                     }
                 }
 
@@ -236,13 +239,17 @@ class TransactionDelegate {
     /**
      * Pop
      */
-    void pop(final FragmentManager fm) {
+    void pop(final FragmentManager fm, final Runnable afterPopTransactionRunnable) {
         enqueue(fm, new Action(Action.ACTION_POP, fm) {
             @Override
             public void run() {
                 handleAfterSaveInStateTransactionException(fm, "pop()");
                 FragmentationMagician.popBackStackAllowingStateLoss(fm);
                 removeTopFragment(fm);
+
+                if (afterPopTransactionRunnable != null) {
+                    afterPopTransactionRunnable.run();
+                }
             }
         });
     }
