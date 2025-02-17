@@ -55,7 +55,7 @@ repositories {
 implementation 'com.github.v-shahzadahmad.Fragmentation:fragmentation:2.0.0'
 
 // If you don't want to extends SupportActivity/Fragment and would like to customize your own support, just rely on fragmentation-core
-// implementation 'com.github.v-shahzadahmad.Fragmentation:fragmentation_core:2.0.0'
+implementation 'com.github.v-shahzadahmad.Fragmentation:fragmentation_core:2.0.0'
 
 // To get SwipeBack feature, rely on both fragmentation & fragmentation-swipeback
 implementation 'com.github.v-shahzadahmad.Fragmentation:fragmentation:2.0.0'
