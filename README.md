@@ -52,16 +52,16 @@ repositories {
 
 // This is the use of androidx, if you are using the android.support: fragmentationx -> fragmentation
 
-implementation 'com.github.v-shahzadahmad.Fragmentation:fragmentation:2.0.0'
+implementation 'com.github.v-shahzadahmad.Fragmentation:fragmentation:2.1.0'
 
 // If you don't want to extends SupportActivity/Fragment and would like to customize your own support, just rely on fragmentation-core
-implementation 'com.github.v-shahzadahmad.Fragmentation:fragmentation_core:2.0.0'
+implementation 'com.github.v-shahzadahmad.Fragmentation:fragmentation_core:2.1.0'
 
 // Swipeback is based on fragmentation. Refer to SwipeBackActivity/Fragment for your Customized SupportActivity/Fragment
-implementation 'com.github.v-shahzadahmad.Fragmentation:fragmentation_swipeback:2.0.0'
+implementation 'com.github.v-shahzadahmad.Fragmentation:fragmentation_swipeback:2.1.0'
 
 // To simplify the communication between Fragments.
-implementation 'com.github.v-shahzadahmad.Fragmentation:eventbus_activity_scope:2.0.0'
+implementation 'com.github.v-shahzadahmad.Fragmentation:eventbus_activity_scope:2.1.0'
 
 // Your EventBus's version
 implementation 'org.greenrobot:eventbus:{version}'
@@ -95,7 +95,7 @@ public class MainActivity extends SupportActivity {
 // since v1.0.0, forced extends of SupportActivity is not required, you can use interface + delegate to implement your own SupportActivity
 public class HomeFragment extends SupportFragment {
 
-    private void xxx() {
+    private void navigate() {
       	// launch a new Fragment, other methods: start(fragment,SINGTASK)、startForResult、startWithPop etc.
         start(DetailFragment.newInstance(HomeBean));
       	// check wiki for other pop, find and animation setting related API
