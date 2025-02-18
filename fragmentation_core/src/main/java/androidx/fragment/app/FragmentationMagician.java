@@ -1,6 +1,9 @@
 package androidx.fragment.app;
 
 
+import android.util.Log;
+
+import java.lang.reflect.Field;
 import java.util.List;
 
 /**
@@ -80,21 +83,48 @@ public class FragmentationMagician {
     }
 
     private static void hookStateSaved(FragmentManager fragmentManager, Runnable runnable) {
-        if (!(fragmentManager instanceof FragmentManagerImpl)) return;
+        if (!(fragmentManager instanceof FragmentManager)) return; // No need for FragmentManagerImpl
 
-        FragmentManagerImpl fragmentManagerImpl = (FragmentManagerImpl) fragmentManager;
         if (isStateSaved(fragmentManager)) {
-            boolean tempStateSaved = fragmentManagerImpl.mStateSaved;
-            boolean tempStopped = fragmentManagerImpl.mStopped;
-            fragmentManagerImpl.mStateSaved = false;
-            fragmentManagerImpl.mStopped = false;
+            Boolean tempStateSaved = getFieldValue(fragmentManager, "mStateSaved");
+            Boolean tempStopped = getFieldValue(fragmentManager, "mStopped");
+
+            setFieldValue(fragmentManager, "mStateSaved", false);
+            setFieldValue(fragmentManager, "mStopped", false);
 
             runnable.run();
 
-            fragmentManagerImpl.mStopped = tempStopped;
-            fragmentManagerImpl.mStateSaved = tempStateSaved;
+            setFieldValue(fragmentManager, "mStopped", tempStopped);
+            setFieldValue(fragmentManager, "mStateSaved", tempStateSaved);
         } else {
             runnable.run();
+        }
+    }
+
+    /**
+     * Safely get a private field value using reflection.
+     */
+    private static Boolean getFieldValue(FragmentManager fragmentManager, String fieldName) {
+        try {
+            Field field = FragmentManager.class.getDeclaredField(fieldName);
+            field.setAccessible(true);
+            return (Boolean) field.get(fragmentManager);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            Log.e("FragmentationMagician", "Error accessing " + fieldName, e);
+            return false; // Default to false if inaccessible
+        }
+    }
+
+    /**
+     * Safely set a private field value using reflection.
+     */
+    private static void setFieldValue(FragmentManager fragmentManager, String fieldName, Boolean value) {
+        try {
+            Field field = FragmentManager.class.getDeclaredField(fieldName);
+            field.setAccessible(true);
+            field.set(fragmentManager, value);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            Log.e("FragmentationMagician", "Error setting " + fieldName, e);
         }
     }
 }
