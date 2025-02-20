@@ -52,16 +52,16 @@ repositories {
 
 // This is the use of androidx, if you are using the android.support: fragmentationx -> fragmentation
 
-implementation 'com.github.v-shahzadahmad.Fragmentation:fragmentation:2.1.0'
+implementation 'com.github.Jibestream:fragmentation:2.1.0'
 
 // If you don't want to extends SupportActivity/Fragment and would like to customize your own support, just rely on fragmentation-core
-implementation 'com.github.v-shahzadahmad.Fragmentation:fragmentation_core:2.1.0'
+implementation 'com.github.Jibestream:fragmentation_core:2.1.0'
 
 // Swipeback is based on fragmentation. Refer to SwipeBackActivity/Fragment for your Customized SupportActivity/Fragment
-implementation 'com.github.v-shahzadahmad.Fragmentation:fragmentation_swipeback:2.1.0'
+implementation 'com.github.Jibestream:fragmentation_swipeback:2.1.0'
 
 // To simplify the communication between Fragments.
-implementation 'com.github.v-shahzadahmad.Fragmentation:eventbus_activity_scope:2.1.0'
+implementation 'com.github.Jibestream:eventbus_activity_scope:2.1.0'
 
 // Your EventBus's version
 implementation 'org.greenrobot:eventbus:{version}'
